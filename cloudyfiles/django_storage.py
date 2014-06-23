@@ -1,5 +1,5 @@
 from django.core.files.storage import Storage as _Storage
-from cloudydict import cloudydict
+from cloudyfiles import cloudyfiles
 from django.conf import settings
 from StringIO import StringIO
 
@@ -7,11 +7,11 @@ from StringIO import StringIO
 class Storage(_Storage):
     def __init__(self, bucket, *args, **kwargs):
         self.bucket = bucket
-        self.dict = cloudydict(bucket, *args, **kwargs)
+        self.dict = cloudyfiles(bucket, *args, **kwargs)
 
     def _open(self, name, mode='rb'):
         if 'w' in mode or 'a' in mode:
-            raise IOError("Permission denied (cannot yet open cloudydict.djang_storage.Storage objects with writable flags)")
+            raise IOError("Permission denied (cannot yet open cloudyfiles.djang_storage.Storage objects with writable flags)")
         try:
             return StringIO(self.dict[name].read())
         except KeyError, e:
@@ -68,7 +68,7 @@ class StorageFromSettings(Storage):
                           DeprecationWarning)
             config = settings.CLOUDY_DICT_STORAGE_SERVER_OPTIONS
         else:
-            raise AttributeError('Use of cloudydict.django_storage.StorageFromSettings requires CLOUDYDICT_STORAGE_SERVER_OPTIONS_SECRET in django.conf.settings')        
+            raise AttributeError('Use of cloudyfiles.django_storage.StorageFromSettings requires CLOUDYDICT_STORAGE_SERVER_OPTIONS_SECRET in django.conf.settings')        
         Storage.__init__(self, *config)
 
 

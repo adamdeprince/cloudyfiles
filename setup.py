@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 """
-cloudydict 
+cloudyfiles 
 ======
-
 
 Right now cloud file access in Python is about where database access
 was in the mid 90's.  Each database wrapper author has their very own
 nomenclature, sets of commands for doing things that are basically the
 same - creating cursors, executing commands and reading rows.
 
-
-cloudydict seeks to do for cloud file providers what the Python
+cloudyfiles seeks to do for cloud file providers what the Python
 Database API does for database access.  Cloud file style servces like
 Rackspace's cloud files and Amazon's S3 really are nothing more than
 dictionaries that map fixed strings to
@@ -20,20 +18,20 @@ dictionaries that map fixed strings to
 from setuptools import setup
 
 setup(
-    name='cloudydict',
-    version='0.0.20',
+    name='cloudyfiles',
+    version='0.0.0',
     author='Adam DePrince',
-    author_email='adeprince@nypublicradio.org',
+    author_email='deprince@googlealumni.com"
     description='Dictionary interface to cloud providers.',
     long_description=__doc__,
     py_modules=[
-        "cloudydict/__init__",
-        "cloudydict/s3",
-        "cloudydict/common",
-        "cloudydict/cloudfiles",
-        "cloudydict/django_storage",
+        "cloudyfiles/__init__",
+        "cloudyfiles/s3",
+        "cloudyfiles/common",
+        "cloudyfiles/cloudfiles",
+        "cloudyfiles/django_storage",
     ],
-    packages=["cloudydict"],
+    packages=["cloudyfiles"],
     zip_safe=True,
     license='GPL',
     include_package_data=True,
@@ -46,7 +44,7 @@ setup(
     ],
     scripts=[
     ],
-    url="http://wnyc.github.io/cloudydict/",
+    url="http://wnyc.github.io/cloudyfiles/",
     install_requires=[
         "boto",
         "python-cloudfiles",

@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from cloudfiles import get_connection
 from cloudfiles.errors import NoSuchContainer, NoSuchObject
-from cloudydict import common
+from cloudyfiles import common
 
 class RemoteObject(common.RemoteObject):
     def __init__(self, obj):
@@ -63,5 +63,5 @@ def factory(container_key, *args, **kwargs):
 def cloudfiles_dict(*args, **kwargs):
     return factory(*args, **kwargs)()
 
-def cloudydict(*args, **kwargs):
+def cloudyfiles(*args, **kwargs):
     return cloudfiles_dict(*args, **kwargs)

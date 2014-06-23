@@ -3,7 +3,7 @@ from boto.s3.connection import S3Connection
 from boto.s3.lifecycle import Lifecycle, Transition, Rule
 from boto.s3.key import Key
 from boto.utils import parse_ts
-from cloudydict import common
+from cloudyfiles import common
 from datetime import datetime, timedelta
 from time import mktime 
 
@@ -114,5 +114,5 @@ def factory(bucket_key, *args, **kwargs):
 def s3_dict(*args, **kwargs):
     return factory(*args, **kwargs)()
 
-def cloudydict(*args, **kwargs):
+def cloudyfiles(*args, **kwargs):
     return s3_dict(*args, **kwargs)

@@ -1,4 +1,4 @@
-cloudydict
+cloudyfiles
 ==========
 
 ![alt text](/cloud.jpg)
@@ -6,7 +6,7 @@ cloudydict
 Cloudydict is a cross vendor compatibility layer that makes all cloud
 file services look as much like a python dict as possible.
 
-Use cloudydict instead of boto or cloudfiles and enjoy simple
+Use cloudyfiles instead of boto or cloudfiles and enjoy simple
 dictionary based access to your files.
 
 Installation
@@ -14,12 +14,12 @@ Installation
 
 Its on Pypi.  Just run this:
 
-    $ pip install --upgrade cloudydict
+    $ pip install --upgrade cloudyfiles
 
 Tutorial
 --------
 
-You might want to take a look at cloudydict's homepage: http://wnyc.github.io/cloudydict/
+You might want to take a look at cloudyfiles's homepage: http://wnyc.github.io/cloudyfiles/
 
 Manifesto
 ---------
@@ -71,9 +71,9 @@ Normally when you create a dictionary in python it suffices to say:
     a = dict() 
 
 
-In cloudydict you need to provide one more piece of information.  The name of your bucket in which you store your key/value pairs. 
+In cloudyfiles you need to provide one more piece of information.  The name of your bucket in which you store your key/value pairs. 
 
-    from cloudydict.s3 import factory
+    from cloudyfiles.s3 import factory
     my_dict_class = factory(<my bucket name>) 
 
 `my_dict_class` is analogous to the `dict` function in python.  It
@@ -94,7 +94,7 @@ this:
 
 will be able to see a and b.  
 
-We can test for set membership in cloudydict:
+We can test for set membership in cloudyfiles:
 
     'c' in d # should be true
     'q' in d # should be false
@@ -115,8 +115,8 @@ And we can retrieve items
 
     print d['a']
 
-You might note that cloudydict does not return a string, but rather an
-instance of `cloudydict.common.RemoteObject`.  RemoteObject is a lazy
+You might note that cloudyfiles does not return a string, but rather an
+instance of `cloudyfiles.common.RemoteObject`.  RemoteObject is a lazy
 evaluating proxy that emulates fairly well the behavior of both a
 read only file and a string.  It tries to do so fairly efficiently too,
 so for example when interacting with back ends that support it, string
@@ -130,12 +130,12 @@ on a string and file return individual character and lines
 respectively.  This is resolved by picking whichever approach is less
 accessible by a standard python convention; in the case of iter, the file __iter__ semantics are provided by default.  Those desiring string semantics need to wrap their RemoteObject in a call to str like this: `str(d[<key>])`
 
-Storage into cloudydict is similarly limited.  Three types of data may
-be stored in cloudydict: file like objects that have a `read` method,
+Storage into cloudyfiles is similarly limited.  Three types of data may
+be stored in cloudyfiles: file like objects that have a `read` method,
 strings or objects that have sanely when `str(<value>)` is called and
 other RemoteObject instances.
 
-When copying values between cloudydict instances never say this:
+When copying values between cloudyfiles instances never say this:
 
     d['z'] = str(e['d'])
 
